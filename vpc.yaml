@@ -1,10 +1,10 @@
 Resources:
-	#create VPC
-	Type: AWS::EC2::VPC
-		Properties:
-          CidrBlock: 11.0.0.0/16
-          EnableDnsSupport: 'true'
-          EnableDnsHostnames: 'true'
-          Tags:
-            - Key: Name
-              Value: PipelineVPC
+  MYVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 11.0.0.0/16
+      EnableDnsSupport: 'true'
+      EnableDnsHostnames: 'true'
+      Tags:
+        - Key: Name
+          Value: pipelinevpc
