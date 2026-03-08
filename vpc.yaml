@@ -2,9 +2,9 @@ Resources:
   MYVPC:
     Type: AWS::EC2::VPC
     Properties:
-      CidrBlock: 11.0.0.0/16
+      CidrBlock: 10.0.0.0/16
       EnableDnsSupport: 'true'
       EnableDnsHostnames: 'true'
       Tags:
         - Key: Name
-          Value: testvpc
+          Value: hellovpc
