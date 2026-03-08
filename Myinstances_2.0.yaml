@@ -1,0 +1,90 @@
+Resources:
+    #create_VPC
+    VPC:
+        Type: AWS::EC2::VPC
+        DeletionPolicy: Retain
+        Properties:
+          CidrBlock: 10.0.0.0/16
+          EnableDnsSupport: 'true'
+          EnableDnsHostnames: 'true'
+          Tags:
+            - Key: Name
+              Value: MyVPC
+    #create_Internetgateway
+    Internetgateway:
+        Type: AWS::EC2::InternetGateway
+        DeletionPolicy: Retain
+        Properties:
+          Tags:
+          - Key: Name
+            Value: myInternetgateway
+    #Attach IGW to VPC
+    AttachIGW:
+        Type: AWS::EC2::VPCGatewayAttachment
+        DeletionPolicy: Retain
+        Properties:
+          VpcId: !Ref VPC
+          InternetGatewayId: !Ref Internetgateway
+
+    #create_subnet
+    Subnet:
+        Type: AWS::EC2::Subnet
+        DeletionPolicy: Retain
+        Properties:
+          VpcId: !Ref VPC  
+          CidrBlock: 10.0.1.0/24
+          AvailabilityZone: ap-south-1a
+          Tags:
+            - Key: Name
+              Value: MySubnet    
+    #Securitygroup_01
+    SSHSG:
+        Type: AWS::EC2::SecurityGroup
+        DeletionPolicy: Retain
+        Properties:
+            VpcId: !Ref VPC
+            GroupDescription: Allow SSH Rule
+            SecurityGroupIngress:
+              - CidrIp: 0.0.0.0/0
+                IpProtocol: tcp
+                FromPort: 22
+                ToPort: 22
+    #Securitygroup_02
+    HttpsSG:
+        Type: AWS::EC2::SecurityGroup
+        DeletionPolicy: Retain
+        Properties:
+            VpcId: !Ref VPC
+            GroupDescription: Allow SSH Rule
+            SecurityGroupIngress:
+              - CidrIp: 0.0.0.0/0
+                IpProtocol: tcp
+                FromPort: 80
+                ToPort: 80    
+              - CidrIp: 0.0.0.0/0
+                IpProtocol: tcp
+                FromPort: 443
+                ToPort: 443 
+
+            
+    #Instance_creation_properties
+    Myinstance:
+      Type: AWS::EC2::Instance
+      DeletionPolicy: Delete
+      Properties:
+        AvailabilityZone: ap-south-1a
+        InstanceType: t3.small
+        ImageId: ami-051a31ab2f4d498f5
+        SubnetId: !Ref Subnet
+        SecurityGroupIds:
+        - !Ref SSHSG
+        - !Ref HttpsSG    
+        
+   #create EIP
+    EIPs:
+      Type: AWS::EC2::EIP
+      DeletionPolicy: Retain
+      Properties:
+        Domain: VPC   
+        InstanceId: !Ref Myinstance
+
