@@ -1,6 +1,6 @@
 Resources:
 	#create VPC
-	Type:
+	Type: AWS::EC2::VPC
 		Properties:
           CidrBlock: 11.0.0.0/16
           EnableDnsSupport: 'true'
