@@ -1,0 +1,10 @@
+Resources:
+	#create VPC
+	Type:
+		Properties:
+          CidrBlock: 11.0.0.0/16
+          EnableDnsSupport: 'true'
+          EnableDnsHostnames: 'true'
+          Tags:
+            - Key: Name
+              Value: PipelineVPC
