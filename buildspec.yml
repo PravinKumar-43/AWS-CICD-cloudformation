@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      docker: 20
+  build:
+    commands:
+      - echo Building Docker image
+      - docker build -t calculator-application .
+  post_build:
+    commands:
+      - echo Build completed
+
+artifacts:
+  files:
+    - '**/*'
