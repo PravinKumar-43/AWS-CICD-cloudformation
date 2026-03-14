@@ -7,20 +7,14 @@ def home():
     return '''
     <h2>Simple Calculator</h2>
 
-    <h3>Add</h3>
+    <h3>Add and Subtract</h3>
     <form action="/add">
-        Number 1: <input name="a"><br>
-        Number 2: <input name="b"><br>
-        <input type="submit" value="Add">
-    </form>
-
-    <h3>Subtract</h3>
     <form action="/sub">
         Number 1: <input name="a"><br>
         Number 2: <input name="b"><br>
+        <input type="submit" value="Add">
         <input type="submit" value="Subtract">
     </form>
-    '''
 
 @app.route('/add')
 def add():
