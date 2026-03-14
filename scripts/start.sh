@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/ec2-user/calculator-app
+cd /root/calculator
 
 docker stop calculator || true
 docker rm calculator || true
