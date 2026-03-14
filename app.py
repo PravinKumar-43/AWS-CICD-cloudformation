@@ -6,10 +6,19 @@ app = Flask(__name__)
 def home():
     return '''
     <h2>Simple Calculator</h2>
-    <form action="/add","/sub">
+
+    <h3>Add</h3>
+    <form action="/add">
         Number 1: <input name="a"><br>
         Number 2: <input name="b"><br>
-        <input type="submit" value="Add","Subtract">
+        <input type="submit" value="Add">
+    </form>
+
+    <h3>Subtract</h3>
+    <form action="/sub">
+        Number 1: <input name="a"><br>
+        Number 2: <input name="b"><br>
+        <input type="submit" value="Subtract">
     </form>
     '''
 
@@ -17,12 +26,12 @@ def home():
 def add():
     a = int(request.args.get('a'))
     b = int(request.args.get('b'))
-    return f"<h3>Result: {a+b}</h3>"
+    return f"<h3>Result: {a + b}</h3>"
 
 @app.route('/sub')
-def add():
+def sub():
     a = int(request.args.get('a'))
     b = int(request.args.get('b'))
-    return f"<h3>Result: {a-b}</h3>"
+    return f"<h3>Result: {a - b}</h3>"
 
 app.run(host="0.0.0.0", port=5000)
