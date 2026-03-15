@@ -30,4 +30,4 @@ def calculate():
 
     return f"<h3>Result: {result}</h3>"
 
-app.run(host="0.0.0.0", port=8000)
+app.run(host="0.0.0.0", port=5000)
